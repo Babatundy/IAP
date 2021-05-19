@@ -41,6 +41,8 @@ class _Main_pageState extends State<Main_page> {
 
   @override
   Widget build(BuildContext context) {
+    //just adding a comment
+    var i=0;
     return Scaffold(
       key: scaff_key,
       appBar: AppBar(
