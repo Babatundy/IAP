@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iap/about_us.dart';
 
 class Main_page extends StatefulWidget {
   @override
@@ -6,8 +7,7 @@ class Main_page extends StatefulWidget {
 }
 
 class _Main_pageState extends State<Main_page> {
-
-  var scaff_key=GlobalKey<ScaffoldState>();
+  var scaff_key = GlobalKey<ScaffoldState>();
 
   static const drawer_head = UserAccountsDrawerHeader(
     accountName: Text("user"),
@@ -18,31 +18,33 @@ class _Main_pageState extends State<Main_page> {
           size: 70,
         )),
   );
-  final drawer_items = ListView(
-    children: [
-      drawer_head,
-      ListTile(
-        title: Text(
-          "About Us",
-          style: TextStyle(fontSize: 30),
-        ),
-        onTap: () => print("About Us"),
-      ),
-      ListTile(
-        trailing: Icon(Icons.phone),
-        title: Text(
-          "Contact Us",
-          style: TextStyle(fontSize: 30),
-        ),
-        onTap: () => print("Contact Us"),
-      ),
-    ],
-  );
 
   @override
   Widget build(BuildContext context) {
+    final drawer_items = ListView(
+      children: [
+        drawer_head,
+        ListTile(
+          title: Text(
+            "About Us",
+            style: TextStyle(fontSize: 30),
+          ),
+          onTap: () {
+            Navigator.push(context, About_us());
+          },
+        ),
+        ListTile(
+          trailing: Icon(Icons.phone),
+          title: Text(
+            "Contact Us",
+            style: TextStyle(fontSize: 30),
+          ),
+          onTap: () => print("Contact Us"),
+        ),
+      ],
+    );
     //just adding a comment
-    var i=0;
+    var i = 0;
     return Scaffold(
       key: scaff_key,
       appBar: AppBar(
