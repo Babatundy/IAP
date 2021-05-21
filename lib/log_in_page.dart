@@ -79,8 +79,6 @@ class _Log_in_pageState extends State<Log_in_page> {
                     validator: (value) {
                       if (value.isEmpty)
                         return "Enter user name!";
-                      else
-                        return "";
                     },
                     controller: user_name,
                     decoration: InputDecoration(
@@ -101,8 +99,6 @@ class _Log_in_pageState extends State<Log_in_page> {
                     validator: (value) {
                       if (value.isEmpty)
                         return "Enter password!";
-                      else
-                        return "";
                     },
                     obscureText: true,
                     controller: password,
