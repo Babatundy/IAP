@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iap/main_page.dart';
 
 class Log_in_page extends StatefulWidget {
   @override
@@ -9,9 +10,17 @@ class _Log_in_pageState extends State<Log_in_page> {
   TextEditingController user_name = new TextEditingController();
   TextEditingController password = new TextEditingController();
 
+  bool user_b, password_b;
 
   void tap() {
-    print("log in ");
+    if((password_b==true)&&(user_b==true)) {
+      Navigator.push(context, MaterialPageRoute(builder: (context){
+        return Main_page();
+      }));
+    }
+    else{
+      print("enter your info");
+    }
   }
 
   Button button = new Button();
@@ -52,6 +61,9 @@ class _Log_in_pageState extends State<Log_in_page> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: user_name,
+                  onFieldSubmitted: (user){
+                    user_b=true;
+                  },
                   decoration: InputDecoration(
                     labelText: "user name",
                     border: OutlineInputBorder(
@@ -66,6 +78,9 @@ class _Log_in_pageState extends State<Log_in_page> {
                 child: TextFormField(
                   obscureText: true,
                   controller: password,
+                  onFieldSubmitted: (pass){
+                    password_b=true;
+                  },
                   decoration: InputDecoration(
                     labelText: "password",
                     border: OutlineInputBorder(

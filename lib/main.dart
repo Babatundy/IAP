@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Main_page(),
+      home: Log_in_page(),
       title: "IAP",
     );
   }
