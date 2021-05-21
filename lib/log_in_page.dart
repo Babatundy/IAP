@@ -1,5 +1,26 @@
+
 import 'package:flutter/material.dart';
 import 'package:iap/main_page.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+
+class Iap_start extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+
+      body: AnimatedSplashScreen(
+        curve: Curves.ease,
+          centered: true,
+          backgroundColor: Color(0xfff5821f),
+          splashIconSize: MediaQuery.of(context).size.width,
+          splash: Image.asset("images/sonatrach.png"),
+          nextScreen: Log_in_page(),
+          splashTransition: SplashTransition.fadeTransition,
+        ),
+    );
+  }
+}
+
 
 class Log_in_page extends StatefulWidget {
   @override
@@ -23,7 +44,7 @@ class _Log_in_pageState extends State<Log_in_page> {
               Animation<double> animation,
               Animation<double> secAnimation,
               Widget child) {
-            animation =CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
+            animation = ProxyAnimation();
             return ScaleTransition(scale: animation,child: child,alignment: Alignment.center,);
           },
           pageBuilder: (BuildContext context, Animation<double> animation,
