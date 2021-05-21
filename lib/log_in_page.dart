@@ -44,7 +44,7 @@ class _Log_in_pageState extends State<Log_in_page> {
               Animation<double> animation,
               Animation<double> secAnimation,
               Widget child) {
-            animation = ProxyAnimation();
+            animation = CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
             return ScaleTransition(scale: animation,child: child,alignment: Alignment.center,);
           },
           pageBuilder: (BuildContext context, Animation<double> animation,
