@@ -47,30 +47,33 @@ class _Main_pageState extends State<Main_page> {
     );
     //just adding a comment
     var i = 0;
-    return Scaffold(
-      key: scaff_key,
-      appBar: AppBar(
-        leading: InkWell(
-          child: Image.asset("images/sonatrach_logo.png"),
-          onTap: () => scaff_key.currentState.openDrawer(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        key: scaff_key,
+        appBar: AppBar(
+          leading: InkWell(
+            child: Image.asset("images/sonatrach_logo.png"),
+            onTap: () => scaff_key.currentState.openDrawer(),
+          ),
+          actions: [
+            IconButton(icon: Icon(Icons.logout), onPressed: (){
+              Navigator.of(context).pop();
+            })
+          ],
+          backgroundColor: Colors.deepOrange,
+          centerTitle: true,
+          title: Text("Main menu"),
         ),
-        actions: [
-          IconButton(icon: Icon(Icons.logout), onPressed: (){
-            Navigator.of(context).pop();
-          })
-        ],
-        backgroundColor: Colors.deepOrange,
-        centerTitle: true,
-        title: Text("Main menu"),
+        body: Container(
+          color: Colors.black87,
+        ),
+        drawer: Drawer(
+          elevation: 10,
+          child: drawer_items,
+        ),
+        drawerScrimColor: Colors.white70,
       ),
-      body: Container(
-        color: Colors.black87,
-      ),
-      drawer: Drawer(
-        elevation: 10,
-        child: drawer_items,
-      ),
-      drawerScrimColor: Colors.white70,
     );
   }
 }

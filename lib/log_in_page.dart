@@ -9,16 +9,22 @@ class Log_in_page extends StatefulWidget {
 class _Log_in_pageState extends State<Log_in_page> {
   TextEditingController user_name = new TextEditingController();
   TextEditingController password = new TextEditingController();
-
   bool user_b, password_b;
+  var user_form_key = GlobalKey<FormState>();
+  var pass_form_key = GlobalKey<FormState>();
 
   void tap() {
-    if((password_b==true)&&(user_b==true)) {
-      Navigator.push(context, MaterialPageRoute(builder: (context){
-        return Main_page();
-      }));
-    }
-    else{
+    if ((user_form_key.currentState.validate()) &&
+        (pass_form_key.currentState.validate())) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return Main_page();
+          },
+        ),
+      );
+    } else {
       print("enter your info");
     }
   }
@@ -27,7 +33,7 @@ class _Log_in_pageState extends State<Log_in_page> {
 
   @override
   Widget build(BuildContext context) {
-    var screen_size=MediaQuery.of(context).size;
+    var screen_size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -57,43 +63,62 @@ class _Log_in_pageState extends State<Log_in_page> {
                   size: 150,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: user_name,
-                  onFieldSubmitted: (user){
-                    user_b=true;
-                  },
-                  decoration: InputDecoration(
-                    labelText: "user name",
-                    border: OutlineInputBorder(
-                      gapPadding: 3,
-                      borderRadius: BorderRadius.circular(12),
+              Form(
+                key: user_form_key,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty)
+                        return "Enter user name!";
+                      else
+                        user_b = false;
+                    },
+                    controller: user_name,
+                    onFieldSubmitted: (user) {
+                      user_b = true;
+                    },
+                    decoration: InputDecoration(
+                      labelText: "user name",
+                      border: OutlineInputBorder(
+                        gapPadding: 3,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ),
               ), //user name
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  obscureText: true,
-                  controller: password,
-                  onFieldSubmitted: (pass){
-                    password_b=true;
-                  },
-                  decoration: InputDecoration(
-                    labelText: "password",
-                    border: OutlineInputBorder(
-                      gapPadding: 3,
-                      borderRadius: BorderRadius.circular(12),
+              Form(
+                key: pass_form_key,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+
+                    validator: (value) {
+                      if (value.isEmpty)
+                        return "Enter password!";
+                      else
+                        password_b = false;
+                    },
+                    obscureText: true,
+                    controller: password,
+                    onFieldSubmitted: (pass) {
+                      password_b = true;
+                    },
+                    decoration: InputDecoration(
+                      labelText: "password",
+                      border: OutlineInputBorder(
+                        gapPadding: 3,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ),
               ), //password
               button.button(tap),
               Container(
-                height: screen_size.width/3,
-                width: screen_size.width/3,
+                height: screen_size.width / 3,
+                width: screen_size.width / 3,
                 alignment: Alignment.bottomCenter,
                 child: Text("Contact us at"),
               ),
@@ -111,7 +136,7 @@ class Button {
 
   Widget button(Function on_tap) {
     return RaisedButton(
-      padding: EdgeInsets.only(right: 40,left: 40,top: 15,bottom: 15),
+      padding: EdgeInsets.only(right: 40, left: 40, top: 15, bottom: 15),
       onPressed: on_tap,
       color: Colors.deepOrange,
       child: Text("Log In"),
