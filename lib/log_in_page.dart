@@ -9,6 +9,7 @@ class Log_in_page extends StatefulWidget {
 class _Log_in_pageState extends State<Log_in_page> {
   TextEditingController user_name = new TextEditingController();
   TextEditingController password = new TextEditingController();
+  bool user_b, password_b;
   var user_form_key = GlobalKey<FormState>();
   var pass_form_key = GlobalKey<FormState>();
 
@@ -80,9 +81,12 @@ class _Log_in_pageState extends State<Log_in_page> {
                       if (value.isEmpty)
                         return "Enter user name!";
                       else
-                        return "";
+                        user_b = false;
                     },
                     controller: user_name,
+                    onFieldSubmitted: (user) {
+                      user_b = true;
+                    },
                     decoration: InputDecoration(
                       labelText: "user name",
                       border: OutlineInputBorder(
@@ -98,14 +102,18 @@ class _Log_in_pageState extends State<Log_in_page> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+
                     validator: (value) {
                       if (value.isEmpty)
                         return "Enter password!";
                       else
-                        return "";
+                        password_b = false;
                     },
                     obscureText: true,
                     controller: password,
+                    onFieldSubmitted: (pass) {
+                      password_b = true;
+                    },
                     decoration: InputDecoration(
                       labelText: "password",
                       border: OutlineInputBorder(
@@ -132,6 +140,9 @@ class _Log_in_pageState extends State<Log_in_page> {
 }
 
 class Button {
+  /*Function on_tap;
+  Button(this.on_tap);*/
+
   Widget button(Function on_tap) {
     return RaisedButton(
       padding: EdgeInsets.only(right: 40, left: 40, top: 15, bottom: 15),
