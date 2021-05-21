@@ -9,3 +9,13 @@ class About_us extends MaterialPageRoute{
     );
   });
 }
+
+class Contact_us extends MaterialPageRoute{
+  Contact_us():super(builder: (BuildContext context){
+    return Scaffold(
+      body: Center(
+        child: Text("Contact Us"),
+      ),
+    );
+  });
+}

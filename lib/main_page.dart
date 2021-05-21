@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iap/about_us.dart';
+import 'package:iap/drawer_routs.dart';
 
 class Main_page extends StatefulWidget {
   @override
@@ -39,7 +39,9 @@ class _Main_pageState extends State<Main_page> {
             "Contact Us",
             style: TextStyle(fontSize: 30),
           ),
-          onTap: () => print("Contact Us"),
+          onTap: () {
+            Navigator.push(context, Contact_us());
+          },
         ),
       ],
     );
@@ -52,6 +54,11 @@ class _Main_pageState extends State<Main_page> {
           child: Image.asset("images/sonatrach_logo.png"),
           onTap: () => scaff_key.currentState.openDrawer(),
         ),
+        actions: [
+          IconButton(icon: Icon(Icons.logout), onPressed: (){
+            Navigator.of(context).pop();
+          })
+        ],
         backgroundColor: Colors.deepOrange,
         centerTitle: true,
         title: Text("Main menu"),
