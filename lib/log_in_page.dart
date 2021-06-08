@@ -1,17 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:iap/main_page.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-class Fuck extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-    );
-  }
-}
-
-/*class Iap_start extends StatelessWidget {
+class Iap_start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -28,7 +20,7 @@ class Fuck extends StatelessWidget {
     );
   }
 }
-*/
+
 
 class Log_in_page extends StatefulWidget {
   @override
